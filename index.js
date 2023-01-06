@@ -35,6 +35,7 @@ app.get('/models',async(req, res)=>{
     res.json({
       models: response.data.data
     })
+    res.send("success!!");
 })
 
 app.listen(port, ()=>{
