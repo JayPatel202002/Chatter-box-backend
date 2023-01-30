@@ -17,12 +17,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/',async(req, res)=>{
-    const { message, currentModel  } = req.body;
+    const prompt = req.body.prompt;
     const response = await openai.createCompletion({
-        model: `${currentModel}`,
-        prompt: `Pretend that you are a best friend who helps his friend in any condition and you are a talkative person who hold the conversation for long time. - ${message}`,
-        max_tokens: 100,
-        temperature: 0.5,
+        model: "text-davinci-003",
+        prompt: `${prompt}`,
+        max_tokens: 3000,
+        temperature: 0,
+        top_p:1,
+        frequency_penaltiy: 0.5,
+        presence_penalty: 0
       });
 
       res.json({
